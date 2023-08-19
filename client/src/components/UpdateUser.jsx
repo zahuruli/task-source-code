@@ -57,6 +57,7 @@ const UpdateUser = () => {
         { name, sectors, agreement }
       );
       if (data?.success) {
+        localStorage.setItem("user", JSON.stringify(data?.updateUser));
         toast.success(data?.message);
       } else {
         toast.error(data?.message);
@@ -73,35 +74,31 @@ const UpdateUser = () => {
     setSectors("");
   };
   return (
-    <section id="user" className="zahurul">
+    <section id="update" className="zahurul">
       <div className="wrapper">
-        <h2>Update user</h2>
-        <h5>{slug}</h5>
+        <h2>UPDATE USER</h2>
         <div className="content-container">
           <div className="user-form">
             <div className="name">
-              <label htmlFor="name">
-                Name:{" "}
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </label>
+              <p>Name : </p>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="sectors">
-              <label htmlFor="Sectors ">Sectors :</label>
+              <p>Sectors : </p>{" "}
               <Select
                 defaultValue={sectors}
                 bordered={false}
                 placeholder="Select a sector"
                 size="large"
                 className="form-select mb-3"
-                style={{ width: "50%" }}
+                style={{ width: "85%" }}
                 onChange={(value) => {
                   setSectors(value);
                 }}
-                value={sectors}
               >
                 {allSectors.map((c) => (
                   <Option key={c._id} value={c.name}>

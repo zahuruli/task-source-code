@@ -44,6 +44,9 @@ const RegisterUser = () => {
       );
       if (data?.success) {
         localStorage.setItem("user", JSON.stringify(data.user));
+        setName(data?.user?.name);
+        setSectors(data?.user?.sectors);
+        setAgreement(data?.user?.agreement);
         setSlug(data?.user?.slug);
         toast.success(data?.message);
       } else {
@@ -58,28 +61,27 @@ const RegisterUser = () => {
       <div className="wrapper">
         <h2>
           Please enter your name and pick the Sectors you are currently involved
-          in.
+          in
         </h2>
         <div className="content-container">
           <div className="user-form">
             <div className="name">
-              <label htmlFor="name">
-                Name:{" "}
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </label>
+              <p>Name : </p>
+              <input
+                type="text"
+                value={name}
+                placeholder="Enter your name"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="sectors">
-              <label htmlFor="Sectors ">Sectors :</label>
+              <p>Sectors : </p>{" "}
               <Select
                 bordered={false}
                 placeholder="Select a sector"
                 size="large"
                 className="form-select mb-3"
-                style={{ width: "50%" }}
+                style={{ width: "85%" }}
                 onChange={(value) => {
                   setSectors(value);
                 }}
@@ -102,7 +104,9 @@ const RegisterUser = () => {
               </button>
             </div>
             <div className="update-link">
-              <Link to={`/update-user/:${slug}`}>Edit user ?</Link>
+              <Link to={`/update-user/:${slug}`} className="link">
+                Edit user ?
+              </Link>
             </div>
           </div>
         </div>

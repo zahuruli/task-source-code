@@ -35,14 +35,14 @@ app.use(express.static(path.join(__dirname, "./client/dist")));
 app.use("/api/v1/sector", sectorRouter);
 app.use("/api/v1/user", userRouter);
 
-//rest Api:
-// app.use("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/dist/index.html"));
-// });
-
-app.get("/", (req, res) => {
-  res.send("Hello from server");
+// rest Api:
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
 });
+
+// app.get("/", (req, res) => {
+//   res.send("Hello from server");
+// });
 
 //Port:
 
